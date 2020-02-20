@@ -14,8 +14,7 @@ cd ~/ && git clone https://github.com/wmh11112345/config_vim.git
 mv -f ~/.vim ~/.vim_old
 mv -f ~/.vimrc ~/.vimrc_old
 mv -f ~/config_vim/.vimrc ~/
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "正在安装bundle程序" > config_vim_log
 echo "安装完毕将自动退出" >> config_vim_log
 echo "请耐心等待" >> config_vim_log
