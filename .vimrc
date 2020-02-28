@@ -403,7 +403,7 @@ Plug 'shougo/neocomplete.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'vim-scripts/autoproto.vim'
 Plug 'plasticboy/vim-markdown'
-
+Plug 'fatih/vim-go'
 "....
 call plug#end()
 
