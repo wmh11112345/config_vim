@@ -1,3 +1,23 @@
+
+filetype plugin indent on 
+set rtp+=~/.vim/vim_plug
+call plug#begin("~/.vim/plugged")
+Plug 'vim-scripts/taglist.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-scripts/winmanager'
+Plug 'shougo/neocomplete.vim'
+Plug 'kien/ctrlp.vim'
+Plug 'vim-scripts/autoproto.vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'fatih/vim-go'
+Plug 'jodosha/vim-godebug'
+Plug 'derekparker/delve'
+Plug 'neovim/neovim'
+Plug 'Valloric/YouCompleteMe'
+"....
+call plug#end()
+
+
 set sw=4
 set ts=4
 set et
@@ -179,7 +199,7 @@ imap <F3> <ESC> :NERDTreeToggle<CR>
 map <C-F3> \be  
 :autocmd BufRead,BufNewFile *.dot map <F5> :w<CR>:!dot -Tjpg -o %<.jpg % && eog %<.jpg  <CR><CR> && exec "redr!"
 "C，C++ 按F5编译运行
-map <F5> :call CompileRunGcc()<CR>
+noremap <F5> :call CompileRunGcc()<CR>
 func! CompileRunGcc()
 	exec "w"
 	if &filetype == 'c'
@@ -316,22 +336,21 @@ set matchtime=1
 set scrolloff=3
 " 为C程序提供自动缩进
 "自动补全
-"":inoremap ( ()<ESC>i
-"":inoremap ) <c-r>=ClosePair(')')<CR>
-":inoremap { {<CR>}<ESC>O
-":inoremap } <c-r>=ClosePair('}')<CR>
-"":inoremap [ []<ESC>i
-"":inoremap ] <c-r>=ClosePair(']')<CR>
-"":inoremap " ""<ESC>i
-"":inoremap ' ''<ESC>i
-""function! ClosePair(char)
-""	if getline('.')[col('.') - 1] == a:char
-""		return "\<Right>"
-""	else
-""		return a:char
-""	endif
-""endfunction
-filetype plugin indent on 
+inoremap ( ()<ESC>i
+inoremap ) <c-r>=ClosePair(')')<CR>
+inoremap { {<CR>}<ESC>O
+inoremap } <c-r>=ClosePair('}')<CR>
+inoremap [ []<ESC>i
+inoremap ] <c-r>=ClosePair(']')<CR>
+inoremap " ""<ESC>i
+inoremap ' ''<ESC>i
+function! ClosePair(char)
+	if getline('.')[col('.') - 1] == a:char
+		return "\<Right>"
+	else
+		return a:char
+	endif
+endfunction
 "打开文件类型检测, 加了这句才可以用智能补全
 set completeopt=longest,menu
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -349,7 +368,7 @@ set tags=tags;
 set autochdir 
 """"自动更新tags"""
 nmap <F10> : call UpdateCtags()<CR> <CR>
-function! UpdateCtags()
+func! UpdateCtags()
     let curdir=getcwd()
     while !filereadable("./tags")
         cd ..
@@ -363,7 +382,7 @@ function! UpdateCtags()
     endif
     execute ":cd " . curdir
     execute ":w"
-endfunction 
+endfunc 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "其他东东
@@ -393,21 +412,6 @@ set fileencodings=utf8,ucs-bom,gbk,cp936,gb2312,gb18030
 
 "set nocompatible               " be iMproved
 "filetype off                   " required!
-
-set rtp+=~/.vim/vim_plug
-call plug#begin()
-Plug 'vim-scripts/taglist.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'vim-scripts/winmanager'
-Plug 'shougo/neocomplete.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'vim-scripts/autoproto.vim'
-Plug 'plasticboy/vim-markdown'
-Plug 'fatih/vim-go'
-"....
-call plug#end()
-
-filetype plugin indent on     " required!
 "
 "ctrlp设置
 "
@@ -419,3 +423,5 @@ let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
 let g:ctrlp_extensions = ['funky']
 
 let NERDTreeIgnore=['\.pyc']
+endfunction
+

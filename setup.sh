@@ -22,5 +22,8 @@ echo "请耐心等待" >> config_vim_log
 
 vim config_vim_log -c "PlugInstall" -c "q" -c "q"
 rm -f  config_vim_log
+cd ~/.vim/plugged/YouCompleteMe
+git submodule update --init --recursive
+python3 install.py --go-complete
 echo "安装完成"    
 
